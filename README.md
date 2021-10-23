@@ -1,4 +1,4 @@
-# Linear Regression on FIFA Players Overall Rating
+\# Linear Regression on FIFA Players Overall Rating
 
 TODO add summary
 
@@ -15,7 +15,7 @@ TODO change content
 -   [GitHub Repository](https://github.com/cipher813/street_team_optimize)
 
 ### contributors
-add Faisal
+[Faisal Alasgah](https://github.com/FaisalAlasgah)
 
 
 TODO: rearrange the project folder, add data folder for the data
