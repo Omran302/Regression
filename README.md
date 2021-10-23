@@ -1,6 +1,6 @@
 # Linear Regression on FIFA Players Overall Rating
 
-TODO add summary
+<!--TODO add summary -->
 
 ### Table of Contents:
 
