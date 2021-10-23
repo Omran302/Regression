@@ -1,4 +1,4 @@
-\# Linear Regression on FIFA Players Overall Rating
+# Linear Regression on FIFA Players Overall Rating
 
 TODO add summary
 
