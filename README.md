@@ -7,7 +7,7 @@ TODO add summary
 -   [Project Proposal](Proposal.ipynb)
 -   Web Scrapping from FIFA Index [Code](FIFA_Web_Scrapping.py).
 -   Linear Regression [Model](Linear_Regression_Model.ipynb)
-- [Slides](Presetation.pdf)
+-   [Slides](Presetation.pdf)
 -   [Writeup](Project_Writeup.md)
 
 ### Credits:
