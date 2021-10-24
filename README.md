@@ -6,7 +6,7 @@ The goal of this project was to use linear regression to predict the overall rat
 ### Table of Contents:
 
 -   [Project Proposal](Proposal.ipynb)
--   Web Scrapping from FIFA Index [Code](FIFA_Web_Scrapping.py).
+-   Web Scraping from FIFA Index [Code](FIFA_Web_Scraping.py).
 -   Linear Regression [Model](Linear_Regression_Model.ipynb)
 -   [Slides](Presentation.pdf)
 -   [Writeup](Project_Writeup.md)
