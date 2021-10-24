@@ -7,7 +7,7 @@
 -   [Project Proposal](Proposal.ipynb)
 -   Web Scrapping from FIFA Index [Code](FIFA_Web_Scrapping.py).
 -   Linear Regression [Model](Linear_Regression_Model.ipynb)
--   [Slides](Presetation.pdf)
+-   [Slides](Presentation.pdf)
 -   [Writeup](Project_Writeup.md)
 
 ### Credits:
@@ -16,4 +16,7 @@
 -   [GitHub Repository](https://github.com/cipher813/street_team_optimize)
 
 ### contributors:
+
 [Faisal Alasgah](https://github.com/FaisalAlasgah)
+
+[Omran Fallatah](https://github.com/omran302)
