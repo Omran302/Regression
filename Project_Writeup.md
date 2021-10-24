@@ -38,14 +38,16 @@ FIFA 22 dataset contains 18,000 players (data points) and we selected 40 feature
 
 The entire training dataset of 17,012 records after applying feature engineering and data cleaning. The dataset was split into 60/20/20 train, test and validate.
 
+After modeling and applying regularization we found the following results:
 
-      Train  /   Validation
 
-      0.889  /   0.892         Linear Regression
+R^2 Values      Train  /   Validation
 
-      0.889  /   0.891         Lasso
+  R^2           0.889  /   0.892         Linear Regression
 
-      0.889  /   0.892         Ridge
+  R^2           0.889  /   0.891         Lasso
+
+  R^2           0.889  /   0.892         Ridge
 
 
 ### Tools
