@@ -1,6 +1,7 @@
 # Linear Regression on FIFA Players Overall Rating
 
-<!--TODO add summary -->
+The goal of this project was to use linear regression to predict the overall rating of football players in FIFA 22. We worked with the data we scraped from <https://www.fifaindex.com/> , leveraging feature Selection, feature engineering and linear regression to achieve promising results.
+
 
 ### Table of Contents:
 
@@ -10,10 +11,6 @@
 -   [Slides](Presentation.pdf)
 -   [Writeup](Project_Writeup.md)
 
-### Credits:
-
--   Analyzing NYC MTA subway and demographic data to optimize street team deployment [Article](https://medium.com/@cipher813/analyzing-nyc-subway-and-demographic-data-to-optimize-street-team-deployment-2614522bd83e)
--   [GitHub Repository](https://github.com/cipher813/street_team_optimize)
 
 ### contributors:
 
