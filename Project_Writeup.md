@@ -20,7 +20,7 @@ FIFA 22 dataset contains 18,000 players (data points) and we selected 40 feature
 
 ### Algorithms
 
-###### Data scraping?
+###### Data scraping
   We started by trying to scrape the data from the FIFA official website with no luck. We switched to FIFA Index website and we were able to scrape all of their database of 18,000 players. Also, we selected 45 features out of 50+ features.
 
 
