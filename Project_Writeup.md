@@ -36,7 +36,7 @@ FIFA 22 dataset contains 18,000 players (data points) and we selected 40 feature
 
 ###### Model Evaluation and Selection
 
-The entire training dataset of 17,012 records after applying feature engineering and data cleaning. The dataset was split into 80/20/20 train, test and validate.
+The entire training dataset of 17,012 records after applying feature engineering and data cleaning. The dataset was split into 60/20/20 train, test and validate.
 
 
       Train  /   Validation
