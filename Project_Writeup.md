@@ -43,8 +43,11 @@ After modeling and applying regularization we found the following results:
 |      |Train     |   Validation  |  Algorithm
 
 | --- | ------------- | ------------- | ------------- |
+
 R^2   | 0.889         |   0.892       | Linear Regression
+
 R^2   | 0.889         |   0.891       | Lasso
+
 R^2   |    0.889      |   0.892       | Ridge
 
 
