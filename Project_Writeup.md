@@ -20,11 +20,11 @@ FIFA 22 dataset contains 18,000 players (data points) and we selected 40 feature
 
 ### Algorithms
 
-####### Data scraping?
+###### Data scraping?
   We started by trying to scrape the data from the FIFA official website with no luck. We switched to FIFA Index website and we were able to scrape all of their database of 18,000 players. Also, we selected 45 features out of 50+ features.
 
 
-####### Data manipulation and cleaning.
+###### Data manipulation and cleaning.
 
 -   Dropped unnecessary columns.
 
@@ -34,7 +34,7 @@ FIFA 22 dataset contains 18,000 players (data points) and we selected 40 feature
 
 -   Dropped all rows containing null or NaN values.
 
-####### Model Evaluation and Selection
+###### Model Evaluation and Selection
 
 The entire training dataset of 17,012 records after applying feature engineering and data cleaning. The dataset was split into 80/20/20 train, test and validate.
 
