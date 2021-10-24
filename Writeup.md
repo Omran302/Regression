@@ -51,7 +51,7 @@ After modeling and applying regularization we found the following results:
 
 -   Numpy and Pandas for data cleaning and manipulation.
 -   Seaborn for plotting.
--   Selenium for Web scraping.
+-   Selenium for web scraping.
 -   Google Chrome for web scraping.
 -   Scikit-learn for modeling.
 
