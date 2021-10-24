@@ -12,7 +12,7 @@ The goal of this project was to use linear regression to predict the overall rat
 
 ### Design
 
-This project originated from our passion for football and FIFA game. The data is provided by our web scrapper. We used the data from fifindex.com to build our model that'll be able to predict future players overall rating.
+This project originated from our passion for football and FIFA game. The data is provided by our web scraper. We used the data from fifindex.com to build our model that'll be able to predict future players overall rating.
 
 ### Data
 
@@ -43,7 +43,7 @@ After modeling and applying regularization we found the following results:
 | Algorithm | Training R^2  | Validation R^2 |
 | ------------- | ------------- | ------------- |
 | Linear Regression | 0.889  | 0.892  |
-| Lasso | 0.892  | 0.891  | 
+| Lasso | 0.892  | 0.891  |
 | Ridge | 0.889  | 0.892  |
 
 
@@ -51,8 +51,8 @@ After modeling and applying regularization we found the following results:
 
 -   Numpy and Pandas for data cleaning and manipulation.
 -   Seaborn for plotting.
--   Selenium for beb scrapping.
--   Google Chrome for web scrapping.
+-   Selenium for Web scraping.
+-   Google Chrome for web scraping.
 -   Scikit-learn for modeling.
 
 ### Communication
