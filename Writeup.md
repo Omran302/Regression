@@ -8,7 +8,7 @@ Omran Fallatah
 
 ### Abstract
 
-The goal of this project was to use linear regression to predict the overall rating of football players in FIFA 22. We worked with the data we scraped from <https://www.fifaindex.com/> , Leveraging TODO feature engineering? along with linear regression to achieve promising results for this problem.
+The goal of this project was to use linear regression to predict the overall rating of football players in FIFA 22. We worked with the data we scraped from <https://www.fifaindex.com/> , Leveraging feature Selection, feature engineering and linear regression to achieve promising results.
 
 ### Design
 
