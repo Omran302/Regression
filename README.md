@@ -16,4 +16,6 @@
 -   [GitHub Repository](https://github.com/cipher813/street_team_optimize)
 
 ### contributors:
+
 [Faisal Alasgah](https://github.com/FaisalAlasgah)
+[Omran Fallatah](https://github.com/omran302)
