@@ -9,7 +9,7 @@ The goal of this project was to use linear regression to predict the overall rat
 -   Web Scraping from FIFA Index [Code](FIFA_Web_Scraping.py).
 -   Linear Regression [Model](Linear_Regression_Model.ipynb)
 -   [Slides](Presentation.pdf)
--   [Writeup](Project_Writeup.md)
+-   [Writeup](Writeup.md)
 
 
 ### contributors:
