@@ -40,11 +40,11 @@ The entire training dataset of 17,012 records after applying feature engineering
 
 After modeling and applying regularization we found the following results:
 
-| Training R^2  | Validation R^2 | Algorithm |
+| Algorithm | Training R^2  | Validation R^2 |
 | ------------- | ------------- | ------------- |
-| 0.889  | 0.892  | Linear Regression
-| 0.892  | 0.891  | Lasso
-| 0.889  | 0.892  | Ridge
+| Linear Regression | 0.889  | 0.892  |
+| Lasso | 0.892  | 0.891  | 
+| Ridge | 0.889  | 0.892  |
 
 
 ### Tools
