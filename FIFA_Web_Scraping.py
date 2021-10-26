@@ -36,7 +36,7 @@ def get_driver(url):
 # Fetches the players name, page url in the current page and returns two lists of names, urls with size 30 each
 
 
-def get_name_url(driver):
+def get_player_name_url(driver):
     # We iterate the whole table of players in the page
     # get table size
     # selenium player list to be converted to text by for loop
@@ -63,19 +63,22 @@ def get_name_url(driver):
 # Loops over all specified pages and returns all players at the end in a dataframe.
 
 
-def get_players_in_page(driver):
-    start = datetime.now()
+def get_players(driver, starting_page, no_of_pages):
+    # just to calculate how long it takes
+    start_fun = datetime.now()
     page_players = pd.DataFrame()
     current_players = []
     # Change to 600 to get all players which = 18k
-    no_of_pages = 601  # if we use 600 it stops at 599
-    # iterate over 34 pages
-    for j in range(1, no_of_pages):
-        page_url = "https://www.fifaindex.com/players/?page=" + str(j)
+    _starting_page = starting_page  # start from this page number
+    _no_of_pages =   no_of_pages# if we use 600 it stops at 599
+    for page_number in range(_starting_page, _no_of_pages):
+        # page_number is page number
+        page_url = "https://www.fifaindex.com/players/?page=" + str(page_number)
         driver.get(page_url)
         # get players table as two lists of players names and url_list
-        names, urls = get_name_url(driver)
+        names, urls = get_player_name_url(driver)
 
+        # gets all players info in current page
         for i in range(len(urls)):
             # click player and go to player page
             # # FIXME:
@@ -89,12 +92,12 @@ def get_players_in_page(driver):
             print("Player ", names[i], " is Done!")
             i += 1
         page_players = pd.DataFrame(current_players)
-        print("Page ", j, " is Done!")
+        print("Page ", page_number, " is Done!")
         # update driver to grab next page?
         print(datetime.now() - start)
-        j += 1
+        page_number += 1
 
-    print(datetime.now() - start)
+    print(datetime.now() - start_fun)
     return page_players
 
     # call get player info and pass the name and url
@@ -108,6 +111,9 @@ def get_players_in_page(driver):
 
 
 def get_player_info(player_name, player_url, driver):
+    # the function takes the player name to append it to the player player_dict
+    # the function takes the player url to open that page
+    # TODO: change this to user selenium without passing player's url
     driver.get(player_url)
 
     # get player basic info append to dict
@@ -132,54 +138,49 @@ def get_player_info(player_name, player_url, driver):
             print("There's not text value for attribute ", inf.text)
 
     # get all attributes append to dict then return
-    par = driver.find_elements_by_xpath(
+    attributes = driver.find_elements_by_xpath(
         "/html/body/main/div/div/div[2]/div[4]/div/div/div/p"
     )
     # get all attributes
     i = 1
-    for pa in par:
+    for attribute in attributes:
         if i < 35:  # break after we get all numerical attributes
             # print(i)
             # print(pa.text)
+            # some values dont have a pair of attribute & value and throws an exception
+            # theres probably a better way to do this
             try:
-                att, avalue = (pa.text).splitlines()
-                # TODO solve extra columns split string and remove integers
-                # maybe
-
+                att, avalue = (attribute.text).splitlines()
                 player_dict[(re.sub(r"\d+", "", att)).strip()] = avalue
             except ValueError:
                 print("There's no readable value for attribute ", pa.text)
 
         i += 1
-
+    # TODO :
     # drop birthdate(4), 11, 12,14,15
     # read skill moves & weak foot?
-
+    #testing
     print(player_dict)
-    # TODO:  add method to grab all features and careful with numerical and non numerical
-    # for pa in par:
-    #    print(pa.text)
-    #    attribute_name, attribute_value =
 
-    # store in dict then append to dataframe
-    # player_dict[attribute_name] = attribute_value
-    # player_dict["name"] =str(name)
     driver.back()
     return player_dict
 
 
 def main():
+    # TODO : make the url,starting page and range readable from the user and pass it to get_driver function
     fifaindex = "https://www.fifaindex.com/players/"
+    starting_page = int(input('Enter starting page: '))
+    no_of_pages = int(input('Enter the range ( How many pages you want to scrap?): '))
     # We call the driver first to open the web page with the given link
-    page_driver = get_driver(fifaindex)
+    driver = get_driver(fifaindex)
     # pass the driver to fetch players info in the all pages (which calls other functions and returns a dataframe)
     # TODO : edit the function to take starting page, range from user and rename the whole function
-    players = get_players_in_page(page_driver)
+    players = get_players(driver, starting_page, no_of_pages)
     # test
     players.head()
     # edit the file name to be named from starting page - ending
-    players.to_csv("Fifa_22_players_ratings_6.csv")
-    page_driver.close()
+    players.to_csv("Fifa_22_players_ratings_"+starting_page+"-"+no_of_pages+".csv")
+    driver.close()
 # chrome Driver is the PATH to our folder containing the driver
 
 
