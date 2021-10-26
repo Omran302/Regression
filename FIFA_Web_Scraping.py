@@ -5,7 +5,8 @@
 # import all libraries
 from bs4 import BeautifulSoup
 import requests
-import time, os
+import time
+import os
 import pandas as pd
 import numpy as np
 from selenium import webdriver
@@ -15,11 +16,14 @@ from datetime import datetime
 
 start = datetime.now()
 
-# Starts the web driver and pass it back to be used elsewhere.
+# Starts the web driver with the given link and pass it back to be used elsewhere.
+
+
 def get_driver(url):
     from selenium.webdriver.common.action_chains import ActionChains
 
-    chromedriver = "C:\Program Files (x86)\Google\Chrome\Application\chromedriver"  # path to the chromedriver executable
+    # path to the chromedriver executable
+    chromedriver = "C:\Program Files (x86)\Google\Chrome\Application\chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     # 1- Go to "fifaindex website"
     page = requests.get(url).text
@@ -29,7 +33,9 @@ def get_driver(url):
     driver.maximize_window()
     return driver
 
-# Fetches the players name, page url in the current page and returns two lists of names, urls
+# Fetches the players name, page url in the current page and returns two lists of names, urls with size 30 each
+
+
 def get_name_url(driver):
     # We iterate the whole table of players in the page
     # get table size
@@ -55,6 +61,8 @@ def get_name_url(driver):
     return player_list, url_list
 
 # Loops over all specified pages and returns all players at the end in a dataframe.
+
+
 def get_players_in_page(driver):
     start = datetime.now()
     page_players = pd.DataFrame()
@@ -97,6 +105,8 @@ def get_players_in_page(driver):
     #    actions.perform()
 
 # Fetches the player data and returns all info and attributes in a dict.
+
+
 def get_player_info(player_name, player_url, driver):
     driver.get(player_url)
 
@@ -146,7 +156,7 @@ def get_player_info(player_name, player_url, driver):
     # read skill moves & weak foot?
 
     print(player_dict)
-    ## TODO:  add method to grab all features and careful with numerical and non numerical
+    # TODO:  add method to grab all features and careful with numerical and non numerical
     # for pa in par:
     #    print(pa.text)
     #    attribute_name, attribute_value =
@@ -158,13 +168,19 @@ def get_player_info(player_name, player_url, driver):
     return player_dict
 
 
-fifaindex = "https://www.fifaindex.com/players/"
-
-# We call the driver first to open the web page
-page_driver = get_driver(fifaindex)
-# pass the driver to fetch players info in the all pages (which calls other functions and returns a dataframe)
-players = get_players_in_page(page_driver)
-players.head()
-players.to_csv("Fifa_22_players_ratings_6.csv")
-page_driver.close()
+def main():
+    fifaindex = "https://www.fifaindex.com/players/"
+    # We call the driver first to open the web page with the given link
+    page_driver = get_driver(fifaindex)
+    # pass the driver to fetch players info in the all pages (which calls other functions and returns a dataframe)
+    # TODO : edit the function to take starting page, range from user and rename the whole function
+    players = get_players_in_page(page_driver)
+    # test
+    players.head()
+    # edit the file name to be named from starting page - ending
+    players.to_csv("Fifa_22_players_ratings_6.csv")
+    page_driver.close()
 # chrome Driver is the PATH to our folder containing the driver
+
+
+main()
