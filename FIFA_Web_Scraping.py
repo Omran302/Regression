@@ -3,7 +3,7 @@
 
 
 # import all libraries
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 import requests
 import time
 import os
@@ -15,6 +15,7 @@ import re
 from datetime import datetime
 
 start = datetime.now()
+
 
 # Starts the web driver with the given link and pass it back to be used elsewhere.
 
@@ -33,6 +34,7 @@ def get_driver(url):
     driver.maximize_window()
     return driver
 
+
 # Fetches the players name, page url in the current page and returns two lists of names, urls with size 30 each
 
 
@@ -47,7 +49,7 @@ def get_player_name_url(driver):
 
     i = 0
     for name in player_list_sel:
-        player_list[i] = str((name.text))
+        player_list[i] = str(name.text)
         url_list[i] = name.get_attribute("href")
         i += 1
 
@@ -60,6 +62,7 @@ def get_player_name_url(driver):
     # print(url_list)
     return player_list, url_list
 
+
 # Loops over all specified pages and returns all players at the end in a dataframe.
 
 
@@ -70,7 +73,7 @@ def get_players(driver, starting_page, no_of_pages):
     current_players = []
     # Change to 600 to get all players which = 18k
     _starting_page = starting_page  # start from this page number
-    _no_of_pages =   no_of_pages# if we use 600 it stops at 599
+    _no_of_pages = no_of_pages  # if we use 600 it stops at 599
     for page_number in range(_starting_page, _no_of_pages):
         # page_number is page number
         page_url = "https://www.fifaindex.com/players/?page=" + str(page_number)
@@ -106,6 +109,7 @@ def get_players(driver, starting_page, no_of_pages):
     # def click_player(player_url,page_driver,action):
     #    actions.click(player_url)
     #    actions.perform()
+
 
 # Fetches the player data and returns all info and attributes in a dict.
 
@@ -153,13 +157,13 @@ def get_player_info(player_name, player_url, driver):
                 att, avalue = (attribute.text).splitlines()
                 player_dict[(re.sub(r"\d+", "", att)).strip()] = avalue
             except ValueError:
-                print("There's no readable value for attribute ", pa.text)
+                logging.exception("There's no readable value for attribute ", pa.text)
 
         i += 1
     # TODO :
     # drop birthdate(4), 11, 12,14,15
     # read skill moves & weak foot?
-    #testing
+    # testing
     print(player_dict)
 
     driver.back()
@@ -179,8 +183,10 @@ def main():
     # test
     players.head()
     # edit the file name to be named from starting page - ending
-    players.to_csv("Fifa_22_players_ratings_"+starting_page+"-"+no_of_pages+".csv")
+    players.to_csv("Data/Fifa_22_players_ratings_" + starting_page + "-" + no_of_pages + ".csv")
     driver.close()
+
+
 # chrome Driver is the PATH to our folder containing the driver
 
 
