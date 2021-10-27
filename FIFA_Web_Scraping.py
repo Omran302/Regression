@@ -1,16 +1,16 @@
 # TODO: Clean this up please.
-# optimize some segement.
+# optimize some segment.
 
 
 # import all libraries
 # from bs4 import BeautifulSoup
-import requests
-import time
+#import requests
+# import time
 import os
 import pandas as pd
-import numpy as np
+from pip._internal.utils import logging
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.keys import Keys
 import re
 from datetime import datetime
 
@@ -21,13 +21,13 @@ start = datetime.now()
 
 
 def get_driver(url):
-    from selenium.webdriver.common.action_chains import ActionChains
+    #from selenium.webdriver.common.action_chains import ActionChains
 
     # path to the chromedriver executable
     chromedriver = "C:\Program Files (x86)\Google\Chrome\Application\chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     # 1- Go to "fifaindex website"
-    page = requests.get(url).text
+    #page = requests.get(url).text
     driver = webdriver.Chrome(chromedriver)
     driver.get(url)
     driver.implicitly_wait(4)
@@ -47,7 +47,7 @@ def get_player_name_url(driver):
     url_list_sel = driver.find_elements_by_class_name("link-player")
     url_list = [0] * (len(url_list_sel))
 
-    i = 0
+    i = int(0)
     for name in player_list_sel:
         player_list[i] = str(name.text)
         url_list[i] = name.get_attribute("href")
@@ -56,7 +56,7 @@ def get_player_name_url(driver):
     # TODO: find a better way to do this lol
     # clean empty rows
     player_list = list(filter(None, player_list))
-    # remove duplicates
+    # remove duplicates (why are we getting duplicates in the first place?)
     url_list = list(dict.fromkeys(url_list))
     # print(player_list)
     # print(url_list)
@@ -128,15 +128,18 @@ def get_player_info(player_name, player_url, driver):
         "/html/body/main/div/div/div[2]/div[2]/div[2]/div/h5/span/span[1]"
     ).text
     i = 1
-    player_dict = {}
-    player_dict["Name"] = player_name
-    player_dict["Overall-Rating"] = player_rating
+    player_dict = {
+        "Name" : player_name,
+        "Overall-Rating" : player_rating
+    }
+   # player_dict["Name"] = player_name
+    #player_dict["Overall-Rating"] = player_rating
 
     for inf in info:
         # print(i)
         # print(inf.text)
         try:
-            info, ivalue = (inf.text).splitlines()
+            info, ivalue = inf.text.splitlines()
             player_dict[info] = ivalue
         except ValueError:
             print("There's not text value for attribute ", inf.text)
@@ -151,13 +154,13 @@ def get_player_info(player_name, player_url, driver):
         if i < 35:  # break after we get all numerical attributes
             # print(i)
             # print(pa.text)
-            # some values dont have a pair of attribute & value and throws an exception
+            # some values don't have a pair of attribute & value and throws an exception
             # theres probably a better way to do this
             try:
-                att, avalue = (attribute.text).splitlines()
+                att, avalue = attribute.text.splitlines()
                 player_dict[(re.sub(r"\d+", "", att)).strip()] = avalue
             except ValueError:
-                logging.exception("There's no readable value for attribute ", pa.text)
+                logging.exception("There's no readable value for attribute ", attribute.text)
 
         i += 1
     # TODO :
@@ -183,7 +186,7 @@ def main():
     # test
     players.head()
     # edit the file name to be named from starting page - ending
-    players.to_csv("Data/Fifa_22_players_ratings_" + starting_page + "-" + no_of_pages + ".csv")
+    players.to_csv("Data/Fifa_22_players_ratings_" + str(starting_page) + "-" + str(no_of_pages) + ".csv")
     driver.close()
 
 
