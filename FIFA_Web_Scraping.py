@@ -187,7 +187,6 @@ def main():
     driver.close()
 
 
-# chrome Driver is the PATH to our folder containing the driver
 
 
 main()
