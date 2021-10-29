@@ -4,9 +4,10 @@
 
 # import all libraries
 # from bs4 import BeautifulSoup
-#import requests
+# import requests
 # import time
 import os
+import streamlit as st
 import pandas as pd
 from pip._internal.utils import logging
 from selenium import webdriver
@@ -21,13 +22,13 @@ start = datetime.now()
 
 
 def get_driver(url):
-    #from selenium.webdriver.common.action_chains import ActionChains
+    # from selenium.webdriver.common.action_chains import ActionChains
 
     # path to the chromedriver executable
     chromedriver = "C:\Program Files (x86)\Google\Chrome\Application\chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     # 1- Go to "fifaindex website"
-    #page = requests.get(url).text
+    # page = requests.get(url).text
     driver = webdriver.Chrome(chromedriver)
     driver.get(url)
     driver.implicitly_wait(4)
@@ -76,7 +77,8 @@ def get_players(driver, starting_page, no_of_pages):
     _no_of_pages = no_of_pages  # if we use 600 it stops at 599
     for page_number in range(_starting_page, _no_of_pages):
         # page_number is page number
-        page_url = "https://www.fifaindex.com/players/?page=" + str(page_number)
+        page_url = "https://www.fifaindex.com/players/?page=" + \
+            str(page_number)
         driver.get(page_url)
         # get players table as two lists of players names and url_list
         names, urls = get_player_name_url(driver)
@@ -129,11 +131,11 @@ def get_player_info(player_name, player_url, driver):
     ).text
     i = 1
     player_dict = {
-        "Name" : player_name,
-        "Overall-Rating" : player_rating
+        "Name": player_name,
+        "Overall-Rating": player_rating
     }
-   # player_dict["Name"] = player_name
-    #player_dict["Overall-Rating"] = player_rating
+    # player_dict["Name"] = player_name
+    # player_dict["Overall-Rating"] = player_rating
 
     for inf in info:
         # print(i)
@@ -160,7 +162,8 @@ def get_player_info(player_name, player_url, driver):
                 att, avalue = attribute.text.splitlines()
                 player_dict[(re.sub(r"\d+", "", att)).strip()] = avalue
             except ValueError:
-                logging.exception("There's no readable value for attribute ", attribute.text)
+                logging.exception(
+                    "There's no readable value for attribute ", attribute.text)
 
         i += 1
     # TODO :
@@ -177,7 +180,8 @@ def main():
     # TODO : make the url,starting page and range readable from the user and pass it to get_driver function
     fifaindex = "https://www.fifaindex.com/players/"
     starting_page = int(input('Enter starting page: '))
-    no_of_pages = int(input('Enter the range ( How many pages you want to scrap?): '))
+    no_of_pages = int(
+        input('Enter the range ( How many pages you want to scrap?): '))
     # We call the driver first to open the web page with the given link
     driver = get_driver(fifaindex)
     # pass the driver to fetch players info in the all pages (which calls other functions and returns a dataframe)
@@ -186,10 +190,9 @@ def main():
     # test
     players.head()
     # edit the file name to be named from starting page - ending
-    players.to_csv("Data/Fifa_22_players_ratings_" + str(starting_page) + "-" + str(no_of_pages) + ".csv")
+    players.to_csv("Data/Fifa_22_players_ratings_" +
+                   str(starting_page) + "-" + str(no_of_pages) + ".csv")
     driver.close()
-
-
 
 
 main()
